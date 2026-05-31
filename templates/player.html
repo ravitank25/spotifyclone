@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Spotify Player</title>
+
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
+
+</head>
+
+<body style="background:black;color:white;text-align:center;">
+
+<h1>Spotify Premium Player</h1>
+
+<button onclick="togglePlay()">
+    Play / Pause
+</button>
+
+<button onclick="nextTrack()">
+    Next
+</button>
+
+<button onclick="previousTrack()">
+    Previous
+</button>
+
+<script>
+
+const token = "{{ token }}";
+
+let player;
+
+window.onSpotifyWebPlaybackSDKReady = () => {
+
+    player = new Spotify.Player({
+
+        name: 'Spotify Clone',
+
+        getOAuthToken: cb => {
+            cb(token);
+        },
+
+        volume: 0.5
+
+    });
+
+    player.connect();
+
+};
+
+function togglePlay(){
+
+    player.togglePlay();
+
+}
+
+function nextTrack(){
+
+    player.nextTrack();
+
+}
+
+function previousTrack(){
+
+    player.previousTrack();
+
+}
+
+</script>
+
+</body>
+</html>
+
